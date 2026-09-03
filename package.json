@@ -1,0 +1,30 @@
+{
+  "name": "agentcore-deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "lint": "biome check --error-on-warnings .",
+    "lint:fix": "biome check --write .",
+    "package": "esbuild src/index.ts --bundle --platform=node --target=node24 --outfile=dist/index.js",
+    "test": "pnpm run lint && vitest run"
+  },
+  "keywords": [
+    "aws",
+    "github",
+    "github-action",
+    "agentcore"
+  ],
+  "author": "Richard Coker",
+  "license": "MIT",
+  "packageManager": "pnpm@10.14.0",
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.12",
+    "@vitest/coverage-v8": "^4.1.11",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}
