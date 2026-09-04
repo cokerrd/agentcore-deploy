@@ -5,11 +5,13 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "check": "tsc --noemit",
     "build": "tsc",
     "lint": "biome check --error-on-warnings .",
     "lint:fix": "biome check --write .",
     "package": "esbuild src/index.ts --bundle --platform=node --target=node24 --outfile=dist/index.js",
-    "test": "pnpm run lint && vitest run"
+    "test": "vitest run",
+    "test:all": "pnpm run lint && pnpm check && pnpm run test"
   },
   "keywords": [
     "aws",

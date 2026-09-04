@@ -1,0 +1,42 @@
+name: Tests
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+    steps:
+      - name: "checkout the latest changes"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: "setup the node runtime"
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+          node-version-file: .nvmrc
+
+      - name: "install the required dependencies"
+        run:  pnpm install --frozen-lockfile
+
+      - name: "perform lints and formatting checks"
+        run: pnpm run lint
+
+      - name: "perform check of typings"
+        run: pnpm run check
+
+      - name: "perform unit test checks"
+        run: pnpm run test
+
+      - name: "package code for distribution"
+        run: pnpm run package
