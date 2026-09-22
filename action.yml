@@ -1,0 +1,24 @@
+name: 'AgentCore Deploy'
+description: 'Deploy an AI agent to AWS Bedrock AgentCore Runtime'
+author: 'Richard Coker'
+branding:
+  icon: 'cpu'
+  color: 'orange'
+inputs:
+  runtime-id:
+    description: 'The unique identifier of the AgentCore Runtime to update.'
+    required: true
+  role-arn:
+    description: 'The IAM role ARN that provides permissions for the AgentCore Runtime.'
+    required: true
+  container-uri:
+    description: 'Container URI for the AgentCore Runtime (ECR image URI)'
+    required: true
+outputs:
+  runtime-version:
+    description: 'Updated version of the deployed AgentCore runtime'
+  status:
+    description: 'Status of the AgentCore runtime'
+runs:
+  using: 'node24'
+  main: 'dist/index.js'
