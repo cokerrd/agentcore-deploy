@@ -12,7 +12,7 @@
     "package": "esbuild src/index.ts --bundle --platform=node --target=node24 --outfile=dist/index.js",
     "test": "vitest run",
     "test:all": "pnpm run lint && pnpm check && pnpm run test",
-    "action" : "local-action run ./ src/index.ts .env"
+    "action": "local-action run ./ src/index.ts .env"
   },
   "keywords": [
     "aws",
