@@ -11,7 +11,8 @@
     "lint:fix": "biome check --write .",
     "package": "esbuild src/index.ts --bundle --platform=node --target=node24 --outfile=dist/index.js",
     "test": "vitest run",
-    "test:all": "pnpm run lint && pnpm check && pnpm run test"
+    "test:all": "pnpm run lint && pnpm check && pnpm run test",
+    "action" : "local-action run ./ src/index.ts .env"
   },
   "keywords": [
     "aws",
@@ -24,9 +25,15 @@
   "packageManager": "pnpm@10.14.0",
   "devDependencies": {
     "@biomejs/biome": "^2.5.12",
+    "@github/local-action": "^7.0.1",
+    "@types/node": "^26.6.2",
     "@vitest/coverage-v8": "^4.1.11",
     "esbuild": "^0.28.2",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "@aws-sdk/client-bedrock-agentcore-control": "^3.1131.0"
   }
 }
