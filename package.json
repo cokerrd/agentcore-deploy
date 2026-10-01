@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "@actions/core": "^3.0.1",
-    "@aws-sdk/client-bedrock-agentcore-control": "^3.1131.0"
+    "@aws-sdk/client-bedrock-agentcore-control": "^3.1141.0"
   }
 }
