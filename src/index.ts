@@ -9,6 +9,15 @@ export async function run(): Promise<void> {
       runtimeId: core.getInput('runtime-id', { required: true }),
       roleArn: core.getInput('role-arn', { required: true }),
       containerUri: core.getInput('container-uri', { required: true }),
+      networkMode: core.getInput('network-mode'),
+      securityGroups: core
+        .getInput('security-groups')
+        .split(',')
+        .filter((x) => x !== ''),
+      subnets: core
+        .getInput('subnets')
+        .split(',')
+        .filter((x) => x !== ''),
     };
 
     validateInput(input);
