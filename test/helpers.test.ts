@@ -5,6 +5,9 @@ const validInput: actionInputs = {
   runtimeId: 'runtime123467789',
   roleArn: 'arn:aws:iam::12345678910:role/agent-role',
   containerUri: '123456789100.dkr.ecr.us-west-2.amazonaws.com/agentcore-deploy:v1.0.0',
+  networkMode: 'PUBLIC',
+  securityGroups: [],
+  subnets: [],
 };
 
 const makeInput = (overrides: Partial<actionInputs> = {}): actionInputs => ({
@@ -25,6 +28,16 @@ describe('validateInput', () => {
   test('rejects invalid container URI', () => {
     const input = makeInput({ containerUri: '123456789.dkr.ecr.us-west-2.amazonaws.com' });
     expect(() => validateInput(input)).toThrow(/Invalid "container-uri":/);
+  });
+
+  test('rejects invalid PUBLIC network-mode', () => {
+    const input = makeInput({ subnets: ['subnet-a'] });
+    expect(() => validateInput(input)).toThrow(/Invalid "network-mode":/);
+  });
+
+  test('rejects invalid VPC network-mode', () => {
+    const input = makeInput({ networkMode: 'VPC' });
+    expect(() => validateInput(input)).toThrow(/Invalid "network-mode":/);
   });
 
   test('reports all validation errors together', () => {

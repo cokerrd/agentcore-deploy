@@ -14,6 +14,16 @@ inputs:
   container-uri:
     description: 'Container URI for the AgentCore Runtime (ECR image URI)'
     required: true
+  network-mode:
+    description: 'Network mode for the AgentCore Runtime. Either PUBLIC or VPC.'
+    required: false
+    default: 'PUBLIC'
+  security-groups:
+    description: 'Comma-separated list of security group IDs for VPC network mode.'
+    required: false
+  subnets:
+    description: 'Comma-separated list of subnet IDs for VPC network mode.'
+    required: false
 outputs:
   runtime-version:
     description: 'Updated version of the deployed AgentCore runtime'

@@ -2,6 +2,9 @@ export interface actionInputs {
   runtimeId: string;
   roleArn: string;
   containerUri: string;
+  networkMode: string;
+  securityGroups: string[];
+  subnets: string[];
 }
 
 export function validateInput(inputs: actionInputs) {
@@ -17,6 +20,26 @@ export function validateInput(inputs: actionInputs) {
   if (!ecrRegex.test(inputs.containerUri)) {
     errors.push(
       `Invalid "container-uri": "${inputs.containerUri}". Expected an ECR URI like 123456789012.dkr.ecr.us-west-2.amazonaws.com/repo:tag.`,
+    );
+  }
+
+  //validate PUBLIC network configuration
+  if (
+    inputs.networkMode.trim().toUpperCase() === 'PUBLIC' &&
+    (inputs.securityGroups.length > 0 || inputs.subnets.length > 0)
+  ) {
+    errors.push(
+      `Invalid "network-mode": "${inputs.networkMode}". "security-groups" and "subnets" must not be set for ${inputs.networkMode} network-mode`,
+    );
+  }
+
+  //validate VPC network configuration
+  if (
+    inputs.networkMode.trim().toUpperCase() === 'VPC' &&
+    (inputs.securityGroups.length === 0 || inputs.subnets.length === 0)
+  ) {
+    errors.push(
+      `Invalid "network-mode": "${inputs.networkMode}". ${inputs.networkMode} network-mode requires "security-groups" and "subnets" to be set`,
     );
   }
 
