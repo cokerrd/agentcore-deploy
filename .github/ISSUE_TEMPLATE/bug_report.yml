@@ -1,0 +1,22 @@
+name: Bug report
+description: Something isn't working
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you expected vs. what actually happened
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Workflow snippet
+      description: Remove any secrets and account IDs
+      render: yaml
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log output
+      render: shell
