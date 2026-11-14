@@ -1,0 +1,19 @@
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ['README.md', '**/*.md']
+
+dist:
+  - changed-files:
+      - any-glob-to-any-file: ['dist/**']
+
+test:
+  - changed-files:
+      - any-glob-to-any-file: ['test/**']
+
+action-metadata:
+  - changed-files:
+      - any-glob-to-any-file: ['action.yml']
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file: ['package.json', 'pnpm-lock.yaml']
