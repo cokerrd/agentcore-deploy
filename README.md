@@ -13,8 +13,8 @@ Deploys an AI agent to AWS Bedrock AgentCore Runtime by updating an existing run
 - [Credentials and Region](#credentials-and-region)
 - [Permissions](#permissions)
 - [Troubleshooting](#troubleshooting)
-- [Development](#development)
-- [License Summary](#license-summary)
+- [License](#license)
+- [Contributing](#contributing)
 
 ## Usage
 
@@ -225,17 +225,11 @@ Common issues:
 - **`AccessDeniedException` on `iam:PassRole`.** The credentials used by the workflow must be allowed to pass the role given in `role-arn`.
 - **VPC deployment errors.** Make sure both `security-groups` and `subnets` are provided when `network-mode` is `VPC`.
 
-## Development
 
-This action runs on Node 24 and is executed from the bundled `dist/index.js`.
+### License
 
-```bash
-pnpm install
-pnpm run package   # bundles the action into dist/
-```
+This project is licensed under the [MIT license](LICENSE).
 
-Commit the updated `dist/` directory with your changes so the action runs correctly when referenced from a workflow.
+### Contributing
 
-## License Summary
-
-This code is made available under the MIT license.
+All contributions are encouraged! Check out the [contributor's guide](.github/contributing.md) to learn more.
